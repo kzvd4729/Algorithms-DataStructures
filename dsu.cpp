@@ -9,6 +9,7 @@ inline int get(int x)
   if(x==par[x])return x;
   return par[x]=get(par[x]);
 }
+//for max
 void process(int n)
 {
   stack<int>st;
