@@ -19,7 +19,6 @@ lcm(m1,m2) = m1*(m2/g)
 so, (m1*x'*(a2-a1)/g)%(lcm(m1,m2)) = m1*(x'*(a2-a1)/g)%(m2/g)
 
 overall, (a1+m1*(x'*(a2-a1)/g)%(m2/d))%lcm(m1,m2);
-
 */
 //solves the equation ax+by=gcd(a,b)
 long exgcd(long a,long b,long &x,long &y)
@@ -30,6 +29,8 @@ long exgcd(long a,long b,long &x,long &y)
   x=y1,y=x1-(a/b)*y1;
   return g;
 }
+//if all m are relative prime with other than the congruent equation have
+//a unique solution
 //remainder vector and modulo vector. modulo doesn't need to be co prime
 long crt(vector<long>&a,vector<long>&m)
 {
