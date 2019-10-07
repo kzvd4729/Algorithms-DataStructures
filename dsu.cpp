@@ -1,6 +1,6 @@
 /*
-Arpa's trick. Range min,max in O(1). Offline. Linear memory.
-Sort range query by their right side, answer every query ending i when 1 to i has
+Arpa's trick. range min,max in O(1). offline. linear memory.
+sort range query by their right side, answer every query ending i when 1 to i has
 been processed.
 */
 int par[N+2],aa[N+2];
