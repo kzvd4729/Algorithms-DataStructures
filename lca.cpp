@@ -32,7 +32,7 @@ int lca(int u,int v)
   for(int i=20;i>=0;i--)
   {
     if(sp[u][i]==sp[v][i])continue;
-    u=sp[u][i];v=sp[v][i];
+    u=sp[u][i],v=sp[v][i];
   }
   return par[u];
 }
