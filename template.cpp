@@ -5,7 +5,7 @@ using namespace std;
 #define DP(x) cerr<<#x<<" = "<<x.first<<" "<<x.second<<endl
 #define F cerr<<"flag"<<endl
 template<typename T>//container
-void _p(T v)
+void P(T v)
 {
   cerr<<"( ";
   for(auto x:v)cerr<<x<<" ";
