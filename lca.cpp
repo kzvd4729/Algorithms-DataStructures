@@ -1,4 +1,4 @@
-int par[N+2],lev[N+2],sp[N+2][21];
+int lev[N+2],sp[N+2][21];
 vector<int>adj[N+2];
 void reckon(int n,int p,int h)
 {
@@ -8,8 +8,6 @@ void reckon(int n,int p,int h)
 }
 void sparse(int n)
 {
-  for(int i=1;i<=n;i++)
-    sp[i][0]=par[i];
   for(int j=1;j<=20;j++)
   {
     for(int i=1;i<=n;i++)
@@ -34,5 +32,5 @@ int lca(int u,int v)
     if(sp[u][i]==sp[v][i])continue;
     u=sp[u][i],v=sp[v][i];
   }
-  return par[u];
+  return sp[u][0];
 }
