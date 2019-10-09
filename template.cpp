@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 #define long long long
 using namespace std;
-const int N=1e6;
-
 #define SP(x) cerr<<#x<<" = "<<x<<endl
 #define DP(x) cerr<<#x<<" = "<<x.first<<" "<<x.second<<endl
 #define F cerr<<"flag"<<endl
@@ -14,6 +12,7 @@ void _p(T v)
   cerr<<")"<<endl;
 }
 
+const int N=1e6;
 int main()
 {
   ios_base::sync_with_stdio(0);cin.tie(0);
