@@ -1,5 +1,12 @@
 /*
 take care for disconnected graph.
+for undirected graph there are two types of edge, span edge and back edge.
+span edge construct spanning tree and back edge connect two node in the same
+chain(lca of two node is one of them) forms a cycle.
+
+for directed graph there are three types of edge, span edge, back edge and cross
+edge(lca of connecting nodes is not one of them).
+to work on directed edge a lot of things need to be handled.
 */
 vector<int>adj[N+2],tree[N+2];//rooted tree
 vector<pair<int,int> >br;
