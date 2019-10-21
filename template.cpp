@@ -4,6 +4,7 @@ using namespace std;
 #define SP(x) cerr<<#x<<" = "<<x<<endl
 #define DP(x) cerr<<#x<<" = "<<x.first<<" "<<x.second<<endl
 #define F cerr<<"flag"<<endl
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 template<typename T>//container
 void P(T v)
 {
