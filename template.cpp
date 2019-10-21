@@ -5,6 +5,11 @@ using namespace std;
 #define DP(x) cerr<<#x<<" = "<<x.first<<" "<<x.second<<endl
 #define F cerr<<"flag"<<endl
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+unsigned int R(unsigned int lo,unsigned int hi)
+{
+  unsigned int df=(hi-lo+1);
+  return lo+rng()%df;
+}
 template<typename T>//container
 void P(T v)
 {
