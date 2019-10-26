@@ -1,68 +1,71 @@
 const unsigned long mx=(1ULL<<64)-1;
-const int sz=100;
-unsigned long bt[N+2][sz];//64 multiplied
-bool ck(int id,int i){return (bool)(bt[id][i/64]&(1ULL<<(i%64)));}
-void set1(int id,int i){bt[id][i/64]|=(1ULL<<(i%64));}
-void set0(int id,int i){bt[id][i/64]&=(mx^(1ULL<<(i%64)));}
-void set1(int id,int lt,int rt)
+const int sz=100;//64 multiplied
+unsigned long on[64][64],of[64][64];
+void init()
 {
-  while(lt%64&&lt<=rt)set1(id,lt++);
-  while(rt%64!=63&&lt<=rt)set1(id,rt--);
-  for(int i=lt/64;i<rt/64;i++)bt[id][i]=mx;
+  for(int i=0;i<64;i++)
+  {
+    for(int j=i;j<64;j++)
+    {
+      if(j==i)on[i][j]=(1ULL<<j);
+      else on[i][j]=on[i][j-1]|(1ULL<<j);
+      of[i][j]=mx^on[i][j];
+    }
+  }
 }
-void set0(int id,int lt,int rt)
+struct bitSet
 {
-  while(lt%64&&lt<=rt)set0(id,lt++);
-  while(rt%64!=63&&lt<=rt)set0(id,rt--);
-  for(int i=lt/64;i<rt/64;i++)bt[id][i]=0ULL;
-}
-int count1(int id,int lt,int rt)
-{
-  int ret=0;
-  while(lt%64&&lt<=rt)ret+=ck(id,lt++);
-  while(rt%64!=63&&lt<=rt)ret+=ck(id,rt--);
-  for(int i=lt/64;i<rt/64;i++)ret+=__builtin_popcountll(bt[id][i]);
-  return ret;
-}
-void dXor(int id1,int id2,int lt,int rt,int id3)
-{
-  while(lt%64&&lt<=rt)
+  unsigned long bt[sz];
+  void clear(){for(int i=0;i<sz;i++)bt[i]=0;}
+  bool ck(int i){return (bool)(bt[i/64]&(1ULL<<(i%64)));}
+  void set1(int i){bt[i/64]|=(1ULL<<(i%64));}
+  void set0(int i){bt[i/64]&=(mx^(1ULL<<(i%64)));}
+  void set1(int lt,int rt)
   {
-    if(ck(id1,lt)^ck(id2,lt))set1(id3,lt);
-    else set0(id3,lt);lt++;
+    if(lt/64==rt/64){bt[lt/64]|=on[lt%64][rt%64];return ;}
+    bt[lt/64]|=on[lt%64][63];bt[rt/64]|=on[0][rt%64];
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]=mx;
   }
-  while(rt%64!=63&&lt<=rt)
+  void set0(int lt,int rt)
   {
-    if(ck(id1,rt)^ck(id2,rt))set1(id3,rt);
-    else set0(id3,rt);rt--;
+    if(lt/64==rt/64){bt[lt/64]&=of[lt%64][rt%64];return ;}
+    bt[lt/64]&=of[lt%64][63];bt[rt/64]&=of[0][rt%64];
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]=0ULL;
   }
-  for(int i=lt/64;i<rt/64;i++)bt[id3][i]=bt[id1][i]^bt[id2][i];
-}
-void dOr(int id1,int id2,int lt,int rt,int id3)
-{
-  while(lt%64&&lt<=rt)
+  int count1(int lt,int rt)
   {
-    if(ck(id1,lt)|ck(id2,lt))set1(id3,lt);
-    else set0(id3,lt);lt++;
+    int ret=0;
+    if(lt/64==rt/64){return __builtin_popcountll(bt[lt/64]&on[lt%64][rt%64]);}
+    ret+=__builtin_popcountll(bt[lt/64]&on[lt%64][63]);
+    ret+=__builtin_popcountll(bt[rt/64]&on[0][rt%64]);
+    for(int i=lt/64+1;i<rt/64;i++)ret+=__builtin_popcountll(bt[i]);
+    return ret;
   }
-  while(rt%64!=63&&lt<=rt)
+  void dNot(int lt,int rt)//current bitSet will be changed
   {
-    if(ck(id1,rt)|ck(id2,rt))set1(id3,rt);
-    else set0(id3,rt);rt--;
+    if(lt/64==rt/64){bt[lt/64]^=on[lt%64][rt%64];return ;}
+    bt[lt/64]^=on[lt%64][63];bt[rt/64]^=on[0][rt%64];
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]^=mx;
   }
-  for(int i=lt/64;i<rt/64;i++)bt[id3][i]=bt[id1][i]|bt[id2][i];
-}
-void dAnd(int id1,int id2,int lt,int rt,int id3)
-{
-  while(lt%64&&lt<=rt)
+  void dOr(bitSet &st,int lt,int rt)//current bitSet will be changed
   {
-    if(ck(id1,lt)&ck(id2,lt))set1(id3,lt);
-    else set0(id3,lt);lt++;
+    if(lt/64==rt/64){bt[lt/64]|=(st.bt[lt/64]&on[lt%64][rt%64]);return ;}
+    bt[lt/64]|=(st.bt[lt/64]&on[lt%64][63]);
+    bt[rt/64]|=(st.bt[rt/64]&on[0][rt%64]);
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]|=st.bt[i];
   }
-  while(rt%64!=63&&lt<=rt)
+  void dAnd(bitSet &st,int lt,int rt)//current bitSet will be changed
   {
-    if(ck(id1,rt)&ck(id2,rt))set1(id3,rt);
-    else set0(id3,rt);rt--;
+    if(lt/64==rt/64){bt[lt/64]&=(st.bt[lt/64]|of[lt%64][rt%64]);return ;}
+    bt[lt/64]&=(st.bt[lt/64]|of[lt%64][63]);
+    bt[rt/64]&=(st.bt[rt/64]|of[0][rt%64]);
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]&=st.bt[i];
   }
-  for(int i=lt/64;i<rt/64;i++)bt[id3][i]=bt[id1][i]&bt[id2][i];
-}
+  void dXor(bitSet &st,int lt,int rt)//current bitSet will be changed
+  {
+    if(lt/64==rt/64){bt[lt/64]^=(st.bt[lt/64]&on[lt%64][rt%64]);return ;}
+    bt[lt/64]^=(st.bt[lt/64]&on[lt%64][63]);
+    bt[rt/64]^=(st.bt[rt/64]&on[0][rt%64]);
+    for(int i=lt/64+1;i<rt/64;i++)bt[i]^=st.bt[i];
+  }
+};
