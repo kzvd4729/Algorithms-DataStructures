@@ -7,10 +7,11 @@ void cal(int node)
 {
   bst[node].sz=bst[bst[node].lt].sz+bst[bst[node].rt].sz+1;
 }
+//left tree will contain value <= vl.
 pair<int,int>splitbyValue(int node,int vl)
 {
   if(!node)return {0,0};pair<int,int>p;
-  if(bst[node].dt<=vl)//same value will be in left tree.
+  if(bst[node].dt<=vl)
   {
     p=splitbyValue(bst[node].rt,vl);
     bst[node].rt=p.first;cal(node);
