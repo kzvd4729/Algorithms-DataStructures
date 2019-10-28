@@ -9,7 +9,7 @@ struct edge
 int sr,sn;//sr=0,sn=last node+1;
 vector<edge>ed;
 vector<int>adj[N+2];
-void clean(void)
+void clear(void)
 {
   ed.clear();
   for(int i=0;i<=sn;i++)
@@ -83,7 +83,7 @@ struct edge
 int sr,sn;//sr=0,sn=last node+1;
 vector<edge>ed;
 vector<int>adj[N+2];
-void clean(void)
+void clear(void)
 {
   ed.clear();
   for(int i=0;i<=sn;i++)
