@@ -1,0 +1,4 @@
+--> eular circuit and path: eular circuit start from one node traverse every edge
+exactly once and return to start node. path doesn't have to return to start node.
+a graph have eular circuit if evary node is connected and have even degree. for
+path atmost two nodes can have odd degree.
