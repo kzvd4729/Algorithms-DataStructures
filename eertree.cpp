@@ -23,7 +23,7 @@ void build(string s)
   {
     while(s[p-pal[last].len-1]!=s[p])last=pal[last].link;
     int x=pal[last].link,c=s[p]-'a';
-    while(s[p-pal[x].len-1]!=s[p])x=pal[x].link;
+    while(s[p-pal[x].len-1]!=s[p])x=pal[x].link;//finding suffix link
     if(!pal[last].next[c])
     {
       pal[last].next[c]=++sz;pal[sz].len=pal[last].len+2;
