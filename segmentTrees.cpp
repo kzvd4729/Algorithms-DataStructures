@@ -61,3 +61,33 @@ void solve(int n)
 {
   for(int i=1;i<=n;i++){rot[i]=++nw;upd(rot[i],rot[i-1],1,n,aa[i]);}
 }
+
+/*
+initialy array is filled with 1. assign 0 to a segment. find a range sum
+*/
+int seg[5*N+2],lazy[5*N+2];
+void build(int node,int lo,int hi)
+{
+  if(lo==hi){seg[node]=1;return ;}int md=(lo+hi)/2;
+  build(node*2,lo,md);build(node*2+1,md+1,hi);
+  seg[node]=seg[node*2]+seg[node*2+1];
+}
+void tooLazy(int node,int lo,int hi)
+{
+  if(!lazy[node])return ;seg[node]=0;if(lo==hi)return ;
+  lazy[node*2]=1;lazy[node*2+1]=1;lazy[node]=0;
+}
+void upd(int node,int lo,int hi,int lt,int rt)
+{
+  tooLazy(node,lo,hi);if(lo>rt||hi<lt)return;
+  if(lo>=lt&&hi<=rt){lazy[node]=1;tooLazy(node,lo,hi);return ;}
+  int md=(lo+hi)/2;
+  upd(node*2,lo,md,lt,rt);upd(node*2+1,md+1,hi,lt,rt);
+  seg[node]=seg[node*2]+seg[node*2+1];
+}
+int get(int node,int lo,int hi,int lt,int rt)
+{
+  tooLazy(node,lo,hi);if(lo>rt||hi<lt)return 0;
+  if(lo>=lt&&hi<=rt)return seg[node];int md=(lo+hi)/2;
+  return get(node*2,lo,md,lt,rt)+get(node*2+1,md+1,hi,lt,rt);
+}
