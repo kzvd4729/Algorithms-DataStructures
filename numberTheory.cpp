@@ -1,9 +1,9 @@
-int d[N+2][240+2],pt[N+2];//upto 1e6
+vector<int>d[N+2];
 void divisors(void)
 {
   for(int i=1;i<=N;i++)
   {
-    for(int j=i;j<=N;j+=i)d[j][++pt[j]]=i;
+    for(int j=i;j<=N;j+=i)d[j].push_back(i);
   }
 }
 int phi[N+2];
