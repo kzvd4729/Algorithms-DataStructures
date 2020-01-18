@@ -132,8 +132,8 @@ void solve(int n,int mx)
   for(int i=1;i<=n;i++)
   {
     int x;cin>>x;int tmp=++sz;
-    upd(tmp,1,N,root[i-1],i,1);
-    if(last[x]){root[i]=++sz;upd(root[i],1,N,tmp,last[x],-1);}
+    upd(tmp,1,mx,root[i-1],i,1);
+    if(last[x]){root[i]=++sz;upd(root[i],1,mx,tmp,last[x],-1);}
     else root[i]=tmp;
     
     last[x]=i;
