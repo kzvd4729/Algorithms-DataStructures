@@ -5,8 +5,8 @@ otherwise mb(n)=0;
 
 ***mobius sum of divisor of a number is 0, except 1 is 1;
 ***number of integer in a container co-prime with n is sum(mb(d)*cnt(d)), for
-   all divisor d of n. cnt(d) is the number of element in the container multiple
-   of d; 
+all divisor d of n. cnt(d) is the number of element in the container multiple
+of d; 
 */
 int mb[N+2],vis[N+2];
 void mobius()
