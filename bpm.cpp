@@ -4,6 +4,7 @@ edges are unidirectional(left side to right side).
 each bfs starts from all free node(nodes that are not paired yet) of left side
 and by altering from left to right choses all paths ending free node of
 right side.
+nodes of both side are independent of each other, they can have same name.
 dfs selects all those path and makes pair.
 every time exactly two free nodes are paired, so matching increases by one.
 
