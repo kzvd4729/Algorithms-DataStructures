@@ -6,6 +6,11 @@ and by altering from left to right choses all paths ending free node of
 right side.
 dfs selects all those path and makes pair.
 every time exactly two free nodes are paired, so matching increases by one.
+
+path cover problem: minimum number of paths that cover all nodes. only solveable
+for dag. to solve path cover problem take all node of the graph to left side
+and make another copy of all node to right side. now assign directed edge from
+left to right. mpc will be n-maximum match
 */
 int a,b;//number of nodes in left and right side(both numbered from 1).
 int lft[N+2],rgt[N+2],dis[N+2];vector<int>adj[N+2];
