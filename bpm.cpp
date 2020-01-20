@@ -8,22 +8,18 @@ dfs selects all those path and makes pair.
 every time exactly two free nodes are paired, so matching increases by one.
 */
 int a,b;//number of nodes in left and right side(both numbered from 1).
-int lft[N+2],rgt[N+2],dis[N+2];
-vector<int>adj[N+2];
+int lft[N+2],rgt[N+2],dis[N+2];vector<int>adj[N+2];
 void clean()
 {
-  for(int i=1;i<=a;i++)
-    lft[i]=0,adj[i].clear();
-  for(int i=1;i<=b;i++)
-    rgt[i]=0;
+  for(int i=1;i<=a;i++)lft[i]=0,adj[i].clear();
+  for(int i=1;i<=b;i++)rgt[i]=0;
 }
 bool bfs(void)
 {
   queue<int>q;
   for(int i=1;i<=a;i++)
   {
-    if(!lft[i])q.push(i),dis[i]=0;
-    else dis[i]=inf;
+    if(!lft[i])q.push(i),dis[i]=0;else dis[i]=inf;
   }
   dis[0]=inf;
   while(q.size())
@@ -32,8 +28,7 @@ bool bfs(void)
     for(auto v:adj[u])
     {
       if(dis[rgt[v]]<=dis[u]+1)continue;//keeping distance only for left side
-      dis[rgt[v]]=dis[u]+1;
-      if(rgt[v])q.push(rgt[v]);
+      dis[rgt[v]]=dis[u]+1;if(rgt[v])q.push(rgt[v]);
     }
   }
   return dis[0]!=inf;
@@ -45,10 +40,7 @@ bool dfs(int u)
   {
     if(dis[u]+1==dis[rgt[v]])
     {
-      if(dfs(rgt[v]))
-      {
-        lft[u]=v;rgt[v]=u;return true;
-      }
+      if(dfs(rgt[v])){lft[u]=v;rgt[v]=u;return true;}
     }
   }
   return false;
@@ -60,8 +52,7 @@ int hopkroft(void)
   {
     for(int i=1;i<=a;i++)
     {
-      if(dis[i])continue;
-      if(dfs(i))match++;
+      if(dis[i])continue;if(dfs(i))match++;
     }
   }
   return match;
