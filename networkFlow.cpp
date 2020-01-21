@@ -1,3 +1,16 @@
+//..............................................................................
+/*
+flow with demands: capacity is defined by two values lo and hi, hi is maximum
+allowable flow for this edge. lo is least amount flow that have to be sent in
+this edge. to solve the problem add nsr and nsn. add an edge from nsr to 
+every v, capacity will be sum of lo(ui-->v) for all u. also add an
+edge from every u to nsn, capacity will be sum of lo(u-->vi) for all v.
+add a final edge to sn to sr with infinite capacity. flow of this edge define
+total flow of whole network. if all edges connected eith nsr is ed.f==ed.c then
+the network satisfy all lower bound. otherwise not. the network will return an
+arbitrary flow. by changing capacity of sn-->sr edge we can find the minimum flow
+which satisfy all lower bound.
+*/
 /*
 maximum flow with dinic algorithm. complexity EV^2(far better).
 a reverse edge is added to maintain the alternative path.
