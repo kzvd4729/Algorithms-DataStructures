@@ -20,13 +20,11 @@ struct edge
   int a,b,f,c;
 };
 int sr,sn;//sr=0,sn=last node+1;
-vector<edge>ed;
-vector<int>adj[N+2];
+vector<edge>ed;vector<int>adj[N+2];
 void clear(void)
 {
   ed.clear();
-  for(int i=0;i<=sn;i++)
-    adj[i].clear();
+  for(int i=0;i<=sn;i++)adj[i].clear();
 }
 void addEdge(int a,int b,int c)
 {
@@ -49,8 +47,7 @@ bool bfs(void)
     for(auto x:adj[u])
     {
       int v=ed[x].b;
-      if(dis[v]==inf&&ed[x].f<ed[x].c)
-        dis[v]=dis[u]+1,q.push(v);
+      if(dis[v]==inf&&ed[x].f<ed[x].c)dis[v]=dis[u]+1,q.push(v);
     }
   }
   return dis[sn]!=inf;
@@ -69,8 +66,7 @@ int dfs(int u,int flow)
     if(dis[v]!=dis[u]+1)continue;
     if(int pushed=dfs(v,min(flow,ed[id].c-ed[id].f)))
     {
-      ed[id].f+=pushed;ed[id^1].f-=pushed;
-      return pushed;
+      ed[id].f+=pushed;ed[id^1].f-=pushed;return pushed;
     }
   }
   return 0;
@@ -81,8 +77,7 @@ int dinic(void)
   while(bfs())
   {
     for(int i=0;i<=sn;i++)pt[i]=0;
-    while(int pushed=dfs(sr,inf))
-      flow+=pushed;
+    while(int pushed=dfs(sr,inf))flow+=pushed;
   }
   return flow;
 }
