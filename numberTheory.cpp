@@ -49,7 +49,10 @@ otherwise mb(n)=0;
 ***mobius sum of divisor of a number is 0, except 1 is 1;
 ***number of integer in a container co-prime with n is sum(mb(d)*cnt(d)), for
 all divisor d of n. cnt(d) is the number of element in the container multiple
-of d; 
+of d;
+***all pair gcd = sum(mb[i]*ncr(cnt[i],2)). cnt[i]=number of multiple of i in
+the array. for three element it is ncr(cnt[i],3) and so on. it depends on
+how many times the loop is executed.
 */
 int mb[N+2],vis[N+2];
 void mobius()
