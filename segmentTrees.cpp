@@ -140,3 +140,36 @@ void solve(int n,int mx)
   }
   //cout<<get(root[right],1,N,left,right)<<"\n";
 }
+
+/*
+range add min query
+*/
+long seg[5*N+2],lazy[5*N+2];
+void tooLazy(int node,int lo,int hi)
+{
+  seg[node]+=lazy[node];
+  if(lo!=hi)
+    lazy[node*2]+=lazy[node],lazy[node*2+1]+=lazy[node];
+  lazy[node]=0;
+}
+void upd(int node,int lo,int hi,int lt,int rt,long ad)
+{
+  tooLazy(node,lo,hi);
+  if(lo>rt||hi<lt)return ;
+  if(lo>=lt&&hi<=rt)
+  {
+    lazy[node]+=ad;tooLazy(node,lo,hi);return ;
+  }
+  int md=(lo+hi)/2;
+  upd(node*2,lo,md,lt,rt,ad);upd(node*2+1,md+1,hi,lt,rt,ad);
+  seg[node]=min(seg[node*2],seg[node*2+1]);
+}
+long get(int node,int lo,int hi,int lt,int rt)
+{
+  tooLazy(node,lo,hi);
+  if(lo>rt||hi<lt)return 1e18;
+  if(lo>=lt&&hi<=rt)
+    return seg[node];
+  int md=(lo+hi)/2;
+  return min(get(node*2,lo,md,lt,rt),get(node*2+1,md+1,hi,lt,rt));
+}
