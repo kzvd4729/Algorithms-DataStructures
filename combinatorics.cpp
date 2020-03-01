@@ -9,7 +9,6 @@ void calNCR(int n)
       ncr[i][j]=ncr[i-1][j-1]+ncr[i-1][j];////use mod
   }
 }
-//--> catalan number: 1/(n+1) * (2n)C(n)
 const int mod=1e9+7;
 int big(int b,int p,int m=mod)
 {
