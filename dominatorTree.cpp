@@ -47,6 +47,7 @@ void solve(vector<pair<int,int> >ed,int s)//directed graph is in ed
     par[x.second].push_back(x.first);
   }
   dfs(s);reverse(topo.begin(),topo.end());
+  memset(sp,-1,sizeof(sp));
   for(int i=1;i<topo.size();i++)
   {
     int x=topo[i];int dm=par[x][0];
