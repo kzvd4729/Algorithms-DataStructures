@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 #define long long long
 using namespace std;
-#define SP(x) cerr<<#x<<" = "<<x<<endl
-#define DP(x) cerr<<#x<<" = "<<x.first<<" "<<x.second<<endl
 #define F cerr<<"flag"<<endl
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 unsigned int R(unsigned int lo,unsigned int hi)
@@ -10,19 +8,20 @@ unsigned int R(unsigned int lo,unsigned int hi)
   unsigned int df=(hi-lo+1);
   return lo+rng()%df;
 }
-template<typename T>//container
-void P(T v)
+template<typename T>//vector print
+void P(T v,int l=0,int r=-1)
 {
+  if(r==-1)r=v.size()-1;
   cerr<<"( ";
-  for(auto x:v)cerr<<x<<" ";
+  for(int i=l;i<=r;i++)cerr<<v[i]<<" ";
   cerr<<")"<<endl;
 }
-void PB(int x)//print in binary format
+template<typename T>
+void P(T *aa,int l,int r)//array print
 {
-  cerr<<x<<" = ";vector<int>v;
-  while(x){v.push_back(x%2);x/=2;}
-  for(int i=v.size()-1;i>=0;i--)cerr<<v[i];
-  cerr<<endl;
+  cerr<<"( ";
+  for(int i=l;i<=r;i++)cerr<<aa[i]<<" ";
+  cerr<<")"<<endl;
 }
 template<typename T>
 void UN(vector<T>&v)//make unique
@@ -30,13 +29,13 @@ void UN(vector<T>&v)//make unique
   sort(v.begin(),v.end());
   v.erase(unique(v.begin(),v.end()),v.end());
 }
-
 const int N=1e6;
 int main()
 {
   //freopen("inp.txt","r",stdin);
   //freopen("out.txt","w",stdout);
   ios_base::sync_with_stdio(0);cin.tie(0);
+
 
 
   return 0;
