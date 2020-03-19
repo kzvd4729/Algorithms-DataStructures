@@ -8,6 +8,8 @@ nodes of both side are independent of each other, they can have same name.
 dfs selects all those path and makes pair.
 every time exactly two free nodes are paired, so matching increases by one.
 
+minimum vertex cover: (=) maximum bipartite match.
+maximum independent set: (=) n-maximum bipartite match.
 path cover problem: minimum number of paths that cover all nodes. only solveable
 for dag. to solve path cover problem take all node of the graph to left side
 and make another copy of all node to right side. now assign directed edge from
