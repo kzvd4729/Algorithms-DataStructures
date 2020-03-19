@@ -10,11 +10,18 @@ total flow of whole network. if all edges connected eith nsr is ed.f==ed.c then
 the network satisfy all lower bound. otherwise not. the network will return an
 arbitrary flow. by changing capacity of sn-->sr edge we can find the minimum flow
 which satisfy all lower bound.
+
 project and instrument problem: n project needs some subset m instrument. each 
 project have some revenue and each instrument have some cost. select a subset of
 project to maximize revenue. connect sr with project with capacity revenue and
 sn with instrument with capacity cost. connect project with corresponding instrument
 with infinite capacity. revenue will be (sum of revenue)-flow().
+
+minimum weight vertex cover: add source with left side with capacity(=weight) and sink
+with right side with capacity(=weight). every other edge is infinite capacity.
+run flow.
+
+maximum weight independent set: total weight-minimum weight vertex cover.
 */
 /*
 maximum flow with dinic algorithm. complexity EV^2(far better).
