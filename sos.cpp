@@ -38,7 +38,7 @@ void sos(int n)
     }
   }
 }
-//sum of id where msk is subset of id
+//sum over superset
 void sos(int n)
 {
   for(int i=0;i<(1<<n);i++)
