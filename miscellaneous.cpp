@@ -11,3 +11,12 @@ a={1,2,3,4};
 b={2,5,6,7};
 c.resize((int)a.size()+(int)b.size());
 merge(a.begin(),a.end(),b.begin(),b.end(),c.begin());
+
+//loop until clock
+while(clock()<CLOCKS_PER_SEC*2.0){
+}
+
+//fast optimization
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
+
