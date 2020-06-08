@@ -40,7 +40,7 @@ pair<int,int>splitbySize(int node,int ss)
     return {node,p.second};
   }
 }
-//maximum element of left tree <= minimum element of right tree
+//lt and rt are bst and max element of lt <= minimum of rt
 int join(int lt,int rt)
 {
   if(!lt)return rt;if(!rt)return lt;
@@ -55,3 +55,23 @@ int join(int lt,int rt)
     cal(rt);return rt;
   }
 }
+//lt and rt are bst
+/*int join2(int lt,int rt)
+{
+  if(bst[lt].mx<=bst[rt].mn)return join(lt,rt);
+  if(bst[rt].mx<=bst[lt].mn)return join(rt,lt);
+  if(bst[lt].pri>=bst[rt].pri)
+  {
+    pair<int,int>p=splitbyValue(rt,bst[lt].dt);
+    bst[lt].lt=join2(p.first,bst[lt].lt);
+    bst[lt].rt=join2(p.second,bst[lt].rt);
+    cal(lt);return lt;
+  }
+  else
+  {
+    pair<int,int>p=splitbyValue(lt,bst[rt].dt);
+    bst[rt].lt=join2(p.first,bst[rt].lt);
+    bst[rt].rt=join2(p.second,bst[rt].rt);
+    cal(rt);return rt;
+  }
+}*/
