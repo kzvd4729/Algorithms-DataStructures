@@ -60,7 +60,6 @@ struct lineContainer:multiset<line,less<>>
     return (l.k*x+l.m);//for min return -;
   }
 };
-
 //hull Dynamic: slow
 const long inv=-(1LL<<62);//doesn't matter min or max query
 bool Min;//true for min query false for max query
