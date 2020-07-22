@@ -45,7 +45,7 @@ void sos(int n)
     dp[i]=aa[i];
   for(int i=0;i<n;i++)
   {
-    for(int msk=(1<<n)-1;msk;msk--)
+    for(int msk=(1<<n)-1;msk>=0;msk--)
     {
       if(!(msk&(1<<i)))
         dp[msk]+=dp[msk^(1<<i)];
