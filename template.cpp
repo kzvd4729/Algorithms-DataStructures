@@ -18,8 +18,10 @@
 #define long long long
 using namespace std;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+int knightX[]={2,1,-1,-2,-2,-1,1,2};
+int knightY[]={1,2,2,1,-1,-2,-2,-1};
 const int N=1e6;
-int aa[N+2];
+long aa[N+2];
 void compress(int n)
 {
   vector<int>v;
@@ -76,13 +78,13 @@ const int inf=1010580540;
 const long infL=4340410370284600380LL;
 void info()
 {
-  memset(aa,60,sizeof aa);//inf for int and infL for long;
+  memset(aa,-60,sizeof aa);//inf for int and infL for long;
 }
 int main()
 {
   //freopen("inp.txt","r",stdin);
   //freopen("out.txt","w",stdout);
   ios_base::sync_with_stdio(0);cin.tie(0);
-
+  
   return 0;
 }
