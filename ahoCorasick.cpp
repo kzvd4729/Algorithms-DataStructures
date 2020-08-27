@@ -39,7 +39,7 @@ void bfs(void)
 }
 /*for every problem first make the tree then think what
 needs to calculated.*/
-vector<int>adj[N+2];//calculate N
+vector<int>adj[N+2];
 void makeTree(void)
 {
   for(int i=1;i<=nw;i++)
