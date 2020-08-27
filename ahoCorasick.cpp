@@ -37,8 +37,17 @@ void bfs(void)
     }
   }
 }
+/*for every problem first make the tree then think what
+needs to calculated.*/
+vector<int>adj[N+2];//calculate N
+void makeTree(void)
+{
+  for(int i=1;i<=nw;i++)
+    adj[trie[i].link].push_back(i);
+}
 void clear(void)
 {
-  memset(trie,0,sizeof(trie));
+  for(int i=0;i<=nw;i++)
+    memset(trie[i].next,0,sizeof trie[i].next),adj[i].clear();
   nw=0;
 }
