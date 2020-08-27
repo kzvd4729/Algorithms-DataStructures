@@ -49,7 +49,7 @@ struct suffixArray
   {
     n=s.size();
     for(int i=0;i<n;i++)t[i]=s[i];
-    t[n++]='#';
+    t[n++]='#';t[n]='\0';
   }
   void countingSort(int k)
   {
