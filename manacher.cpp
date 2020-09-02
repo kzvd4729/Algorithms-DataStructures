@@ -25,3 +25,12 @@ void manacher(string s)
   ev.erase(ev.begin());
   for(int i=0;i<n-1;i++)ev[i]=ev[i]*2;
 }
+int st[N+2],ed[N+2];
+void addtional(int n)//n=s.size();
+{
+  for(int i=0;i<n;i++)
+    st[i-od[i]/2]++,st[i+1]--,ed[i]++,ed[i+od[i]/2+1]--;
+  for(int i=0;i<n-1;i++)
+    st[i-ev[i]/2+1]++,st[i+1]--,ed[i+1]++,ed[i+1+ev[i]/2]--;
+  for(int i=1;i<n;i++)st[i]+=st[i-1],ed[i]+=ed[i-1];
+}
