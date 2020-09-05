@@ -73,4 +73,5 @@ void build(string s)
       j=slv;
     }
   }
+  for(int i=nw;i>=2;i--)occur[pal[i].link]+=occur[i];
 }
