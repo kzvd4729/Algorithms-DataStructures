@@ -1,10 +1,10 @@
 const int mod1=1000001011,mod2=1000009999;
-const int b1=193,b2=307;
+const int b1=193,b2=307;//greater than maximum value
 int pw1[N+2],pw2[N+2];
-void cal(int n)
+void calPower()
 {
   pw1[0]=1;pw2[0]=1;
-  for(int i=1;i<=n;i++)
+  for(int i=1;i<=N;i++)
   {
     pw1[i]=(1LL*pw1[i-1]*b1)%mod1;
     pw2[i]=(1LL*pw2[i-1]*b2)%mod2;
@@ -12,8 +12,12 @@ void cal(int n)
 }
 struct hsh
 {
-  string s;vector<pair<int,int> >v;
-  pair<int,int>makeHash(void)
+  vector<pair<int,int> >v;string s;
+  void init(string _s)
+  {
+    v.clear();s=_s;
+  }
+  pair<int,int>makeHash(string s)
   {
     int hs1=0,hs2=0;
     for(auto x:s)
@@ -33,8 +37,4 @@ struct hsh
     if(x<0)x+=mod1;if(y<0)y+=mod2;
     return {x,y};
   }
-  void clear(void)
-  {
-    v.clear();
-  }
-};
+}hs;
