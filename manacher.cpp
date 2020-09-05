@@ -25,7 +25,7 @@ void manacher(string s)
   ev.erase(ev.begin());
   for(int i=0;i<n-1;i++)ev[i]=ev[i]*2;
 }
-int st[N+2],ed[N+2];
+int st[N+2],ed[N+2];//number of palindrome starting at i and ending at i
 void addtional(int n)//n=s.size();
 {
   for(int i=0;i<n;i++)
@@ -33,4 +33,9 @@ void addtional(int n)//n=s.size();
   for(int i=0;i<n-1;i++)
     st[i-ev[i]/2+1]++,st[i+1]--,ed[i+1]++,ed[i+1+ev[i]/2]--;
   for(int i=1;i<n;i++)st[i]+=st[i-1],ed[i]+=ed[i-1];
+}
+bool isPalindrome(int i,int j)//0 indexed
+{
+  if((j-i+1)%2)return od[(i+j)/2]>=j-i+1;
+  else return ev[(i+j)/2]>=j-i+1;
 }
