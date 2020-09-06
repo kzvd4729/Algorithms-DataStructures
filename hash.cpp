@@ -17,7 +17,7 @@ struct hsh
   {
     v.clear();s=_s;
   }
-  pair<int,int>makeHash(string s)
+  pair<int,int>makeHash()
   {
     int hs1=0,hs2=0;
     for(auto x:s)
@@ -56,7 +56,7 @@ struct hsh
   {
     v.clear();s=_s;
   }
-  int makeHash(string s)
+  int makeHash()
   {
     int hs=0;
     for(auto x:s)
