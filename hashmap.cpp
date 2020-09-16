@@ -2,7 +2,7 @@
 not been enough tested
 */
 const int sz=1e7;//more size better
-int key[sz+2],val[sz+2];
+int key[sz+2],val[sz+2];//can be any data type
 static inline int h(int x){return((x^179)*7LL)%sz;}
 void init()
 {
