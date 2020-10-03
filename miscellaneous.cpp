@@ -20,3 +20,11 @@ while(clock()<CLOCKS_PER_SEC*2.0){
 #pragma GCC optimize("Ofast")
 #pragma GCC target("avx,avx2,fma")
 
+//stl comparator overload
+struct cmp
+{
+  bool operator()(int a,int b)const{
+    return a>b;
+  }
+};
+//set<int,cmp>st;
