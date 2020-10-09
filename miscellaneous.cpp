@@ -28,3 +28,9 @@ struct cmp
   }
 };
 //set<int,cmp>st;
+
+//diagonal element order. for 2x2 matrix: 11->21->12->22
+for(int i=1;i<=n;i++)
+    for(int j=1;j<=min(i,m);j++)int rw=i-j+1,cl=j;
+for(int i=2;i<=m;i++)
+    for(int j=i;j<=min(m,i+n-1);j++)int rw=n-(j-i),cl=j;
