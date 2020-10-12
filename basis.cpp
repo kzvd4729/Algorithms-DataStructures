@@ -1,19 +1,20 @@
 /*
 basis for xor: S is set of some positive integer.
-B is another set. we call B basis
+B is another set which is sbuset of S. we call B basis
 of S if every element of S can be represented by xor value
 of some subset of B and size of B is minimum possible.
 */
 vector<int>b;//size of basis will always be <= log
+//b is not necessarily subset of S.
 bool isPossible(int x)
 {
   for(auto y:b)x=min(x,x^y);
   return !x;
 }
-void insertX(int x)//online insert
+void insertX(int x)//online
 {
-  if(isPossible(x))return ;
-  for(auto &y:b)if((x^y)<y)y^=x;
+  for(auto y:b)x=min(x,x^y);if(!x)return;
+  for(auto &y:b)y=min(y,y^x);
   b.push_back(x);sort(b.begin(),b.end());
 }
 //number of distinct possible value(0 included).
