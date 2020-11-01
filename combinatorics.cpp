@@ -8,6 +8,7 @@ void calNCR(int n)
     for(int j=1;j<=n;j++)
       ncr[i][j]=ncr[i-1][j-1]+ncr[i-1][j];////use mod
   }
+  ncr[0][0]=1;
 }
 const int mod=1e9+7;
 int big(int b,int p,int m=mod)
