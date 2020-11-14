@@ -8,7 +8,7 @@ void init()
 {
   memset(key,-1,sizeof key);//-1 is invalid
 }
-void add(int x,int y)
+void add(int x,int y)//assign
 {
   int k=h(x);
   while(key[k]!=-1&&key[k]!=x)k=(k+1)%sz;//first non-taken index
