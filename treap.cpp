@@ -3,41 +3,42 @@ struct treap
 {
   int lt,rt,dt,pri,sz;
 }bst[N+2];
-void cal(int node)
+void cal(int nd)
 {
-  bst[node].sz=bst[bst[node].lt].sz+bst[bst[node].rt].sz+1;
+  int l=bst[nd].lt,r=bst[nd].rt;
+  bst[nd].sz=bst[l].sz+bst[r].sz+1;
 }
 //left tree will contain value <= vl.
-pair<int,int>splitbyValue(int node,int vl)
+pair<int,int>splitbyValue(int nd,int vl)
 {
-  if(!node)return {0,0};pair<int,int>p;
-  if(bst[node].dt<=vl)
+  if(!nd)return {0,0};pair<int,int>p;
+  if(bst[nd].dt<=vl)
   {
-    p=splitbyValue(bst[node].rt,vl);
-    bst[node].rt=p.first;cal(node);
-    return {node,p.second};
+    p=splitbyValue(bst[nd].rt,vl);
+    bst[nd].rt=p.first;cal(nd);
+    return {nd,p.second};
   }
   else
   {
-    p=splitbyValue(bst[node].lt,vl);
-    bst[node].lt=p.second;cal(node);
-    return {p.first,node};
+    p=splitbyValue(bst[nd].lt,vl);
+    bst[nd].lt=p.second;cal(nd);
+    return {p.first,nd};
   }
 }
-pair<int,int>splitbySize(int node,int ss)
+pair<int,int>splitbySize(int nd,int ss)
 {
-  if(!node)return {0,0};pair<int,int>p;
-  if(bst[bst[node].lt].sz>=ss)
+  if(!nd)return {0,0};pair<int,int>p;
+  if(bst[bst[nd].lt].sz>=ss)
   {
-    p=splitbySize(bst[node].lt,ss);
-    bst[node].lt=p.second;cal(node);
-    return {p.first,node};
+    p=splitbySize(bst[nd].lt,ss);
+    bst[nd].lt=p.second;cal(nd);
+    return {p.first,nd};
   }
   else
   {
-    p=splitbySize(bst[node].rt,ss-bst[bst[node].lt].sz-1);
-    bst[node].rt=p.first;cal(node);
-    return {node,p.second};
+    p=splitbySize(bst[nd].rt,ss-bst[bst[nd].lt].sz-1);
+    bst[nd].rt=p.first;cal(nd);
+    return {nd,p.second};
   }
 }
 //lt and rt are bst and max element of lt <= minimum of rt
