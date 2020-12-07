@@ -24,6 +24,27 @@ int knightX[]={2,1,-1,-2,-2,-1,1,2};
 int knightY[]={1,2,2,1,-1,-2,-2,-1};
 const int N=1e6;
 long aa[N+2];
+int stringToNum(string x)
+{
+  if((int)x.size()==0)assert(0);
+  int ml=1,b=0,ret=0;
+  if(x[0]=='-')ml=-1,b=1;
+  for(int i=b;i<(int)x.size();i++)
+    ret=ret*10+x[i]-'0';
+  return ret*ml;
+}
+string numToString(int x)
+{
+  if(x==0)return "0";
+  string ret;
+  while(x)
+  {
+    int r=x%10;x/=10;
+    ret.push_back((char)(r+'0'));
+  }
+  reverse(ret.begin(),ret.end());
+  return ret;
+}
 void compress(int n)
 {
   vector<int>v;
@@ -87,6 +108,7 @@ int main()
   //freopen("inp.txt","r",stdin);
   //freopen("out.txt","w",stdout);
   ios_base::sync_with_stdio(0);cin.tie(0);
+
   
   return 0;
 }
