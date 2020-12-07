@@ -1,4 +1,4 @@
-//loop over submask. complexity little better than n^2
+//loop over submask. complexity little better than 3^n
 int cnt=0;
 for(int msk=0;msk<(1<<17);msk++)
 {
@@ -18,7 +18,8 @@ while(clock()<CLOCKS_PER_SEC*2.0){
 
 //fast optimization
 #pragma GCC optimize("Ofast")
-#pragma GCC target("avx,avx2,fma")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
+#pragma GCC optimize("unroll-loops")
 
 //stl comparator overload
 struct cmp
