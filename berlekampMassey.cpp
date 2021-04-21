@@ -1,3 +1,7 @@
+/*
+complexity m^2 log(n) - m^3
+m = length of recurrence
+*/
 const long mod=1e9+7;
 long big(long b,long p)
 {
