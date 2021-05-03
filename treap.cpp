@@ -76,3 +76,21 @@ int join(int lt,int rt)
     cal(rt);return rt;
   }
 }*/
+
+int add(int root,int vl)
+{
+  pair<int,int>p=splitbyValue(root,vl);
+
+  bst[++tr]={0,0,vl,rand(),1};
+  root=join(p.first,tr);
+  root=join(root,p.second);
+
+  return root;
+}
+int erase(int root,int vl)
+{
+  pair<int,int>p=splitbyValue(root,vl-1);
+  pair<int,int>p2=splitbySize(p.second,1);
+
+  return join(p.first,p2.second);
+}
