@@ -11,11 +11,12 @@ bool isPossible(int x)
   for(auto y:b)x=min(x,x^y);
   return !x;
 }
-void insertX(int x)//online
+bool insertX(int x)//online, true if x is one of the basis
 {
-  for(auto y:b)x=min(x,x^y);if(!x)return;
+  for(auto y:b)x=min(x,x^y);if(!x)return false;
   for(auto &y:b)y=min(y,y^x);
   b.push_back(x);sort(b.begin(),b.end());
+  return true;
 }
 //number of distinct possible value(0 included).
 int maxSize()
