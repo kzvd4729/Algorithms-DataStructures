@@ -1,0 +1,24 @@
+/*
+flow with demands: capacity is defined by two values lo and hi, hi is maximum
+allowable flow for this edge. lo is least amount flow that have to be sent in
+this edge. to solve the problem add nsr and nsn. add an edge from nsr to 
+every v, capacity will be sum of lo(ui-->v) for all u. also add an
+edge from every u to nsn, capacity will be sum of lo(u-->vi) for all v.
+add a final edge to sn to sr with infinite capacity. flow of this edge define
+total flow of whole network. if all edges connected eith nsr is ed.f==ed.c then
+the network satisfy all lower bound. otherwise not. the network will return an
+arbitrary flow. by changing capacity of sn-->sr edge we can find the minimum flow
+which satisfy all lower bound.
+
+project and instrument problem: n project needs some subset m instrument. each 
+project have some revenue and each instrument have some cost. select a subset of
+project to maximize revenue. connect sr with project with capacity revenue and
+sn with instrument with capacity cost. connect project with corresponding instrument
+with infinite capacity. revenue will be (sum of revenue)-flow().
+
+minimum weight vertex cover: add source with left side with capacity(=weight) and sink
+with right side with capacity(=weight). every other edge is infinite capacity.
+run flow.
+
+maximum weight independent set: total weight-minimum weight vertex cover.
+*/
